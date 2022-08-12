@@ -1,0 +1,68 @@
+{
+  "name": "pett-app-template",
+  "version": "0.2.3",
+  "description": "",
+  "scripts": {
+    "deploy": "run-s build netlify:deploy",
+    "serve": "run-p watch netlify:serve",
+    "netlify": "run-s build:*",
+    "build": "run-s tsc lint build:*",
+    "build:1js": "node scripts/esbuild.mjs",
+    "build:2css": "tailwindcss -i src/tailwind.pre.css -o dist/styles.css -m",
+    "lint": "eslint --fix src; prettier --write src --loglevel error; eslint --fix api; prettier --write api --loglevel error",
+    "netlify:deploy": "netlify deploy --prod",
+    "netlify:serve": "netlify dev",
+    "tsc": "tsc",
+    "watch": "run-p watch:*",
+    "watch:css": "tailwindcss -i src/tailwind.pre.css -o dist/styles.css -w",
+    "watch:js": "NODE_ENV=development node scripts/esbuild.mjs"
+  },
+  "author": "Eric Kwoka",
+  "license": "MIT",
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "react"
+      ]
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "bracketSameLine": true,
+    "tailwindConfig": "tailwind.config.js",
+    "plugins": [
+      "prettier-plugin-tailwindcss"
+    ]
+  },
+  "dependencies": {
+    "@formkit/auto-animate": "1.0.0-beta.1",
+    "@heroicons/react": "^1.0.6",
+    "cross-fetch": "^3.1.5",
+    "dotenv": "^16.0.1",
+    "preact": "^10.7.3",
+    "preact-router": "^4.0.1"
+  },
+  "devDependencies": {
+    "@netlify/functions": "^1.0.0",
+    "@tailwindcss/forms": "^0.5.2",
+    "@tailwindcss/typography": "^0.5.2",
+    "@types/node": "^18.7.2",
+    "@typescript-eslint/eslint-plugin": "^5.27.0",
+    "@typescript-eslint/parser": "^5.27.0",
+    "autoprefixer": "^10.4.7",
+    "esbuild": "^0.14.42",
+    "esbuild-plugin-alias": "^0.2.1",
+    "esbuild-plugin-copy": "^1.3.0",
+    "eslint": "^8.17.0",
+    "eslint-plugin-compat": "^4.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-react": "^7.27.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.14",
+    "prettier": "^2.6.2",
+    "prettier-plugin-tailwindcss": "^0.1.11",
+    "tailwindcss": "^3.0.24",
+    "typescript": "^4.7.3"
+  }
+}

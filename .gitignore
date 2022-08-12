@@ -1,0 +1,7 @@
+node_modules
+*lock*
+dist/
+.env
+
+# Local Netlify folder
+.netlify
