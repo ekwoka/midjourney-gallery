@@ -13,7 +13,7 @@ export const LargeGallery = () => {
   useAsyncEffect(async () => {
     const options: API_Options = {
       amount: 100,
-      orderBy: 'hot',
+      orderBy: 'top-week',
     };
     const response = await fetch(
       `/api/images?${new URLSearchParams(
@@ -30,7 +30,7 @@ export const LargeGallery = () => {
     setImages(randomize(results));
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % results.length);
-    }, 20000);
+    }, 10000);
     return () => clearInterval(interval);
   }, []);
   if (!images[currentImage]) return <div />;
